@@ -1,0 +1,19 @@
+{
+	"welcome":"<b>Welcome to Contacts App</b><br>Try these links <br> 192.168.2.7:3000/search<br> 192.168.2.7:3000/update<br>192.168.2.7:3000/create <br>192.168.2.7:3000/delete",
+	"serverPort":3000,
+	"invalidData":"You have sent data in wrong format <br>Kindly pass(name,email,phone) in valid format",
+	"invalidEmail":"Invalid email: { username@addr.abc }",
+	"invalidMobile":"Invalid mobile number: { +1 (xxx) xxx-xxxx }",
+	"invalidName":"Pass only characters in name nameLength[4-20]",
+	"searchFail":"No contact found",
+	"createFail":"Unable to save contact",
+	"createExist":"contact already exists",
+	"createSuccess":"contact saved",
+	"deleteFail":"Unable to delete contact",
+	"deleteSuccess":"Contact deleted Successfully",
+	"updateFail":"Unable to update contact",
+	"updateSuccess":"Contact updated Successfully",
+	"updateFieldNull":"you need to pass an array(update) indicating which fields to update",
+	"updateDuplicate":"You trying to update with the same values",
+	"updateUndefinedField":"You have provided wrong field to update"
+}
