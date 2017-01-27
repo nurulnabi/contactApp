@@ -1,0 +1,23 @@
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <div class="input-field col s12 m4 l3">
+      <i class="material-icons prefix">account_circle</i>
+      <input id="icon_prefix" type="text" class="validate" id="name" ng-model="updateUser.name">
+      <label for="icon_prefix">Name</label>
+    </div><br>
+    <div class="input-field col s12 m4 l3">
+      <i class="material-icons prefix">phone</i>
+      <input id="icon_telephone" type="tel" class="validate" id="phone" ng-model="updateUser.phone">
+      <label for="icon_telephone">Telephone</label>
+    </div><br>
+    <div class="input-field col s12 m4 l3">
+      <i class="material-icons prefix">email</i>
+      <input id="email" type="email" class="validate" id="email" ng-model="updateUser.email">
+      <label for="email">Email</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn" ng-click="update()">Submit</a>
+  </div>
+</div>

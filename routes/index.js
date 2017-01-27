@@ -10,16 +10,38 @@ var 	express 		= 	require('express'),
 		;		
 
 
-router.get('/',function(req,res){
-	res.end("use post method to use contact method");
+router.use(express.static('./public')); 		//default 
+
+// router.get('/',function(req,res){
+// 	res.end("use post method to use contact method");
+// });
+
+
+// router.post('/',function defaultRoute(req,res){
+// 	console.log("client requested");
+// 	res.end(msg.welcome);
+// });
+
+router.post('/login',function login(req,res){
+	console.log("client requested login");
+	var params = {};
+		params.res = res;
+		params.msg = msg;
+		params.credentials = {
+			'email':req.body.email,
+			'passwd':req.body.password
+		};
+		dbQuery.login(params);
 });
 
-
-router.post('/',function defaultRoute(req,res){
-	console.log("client requested");
-	res.end(msg.welcome);
+router.post('/getAllData',function getAllData(req,res){
+	console.log("client requested for all data");
+	var params = {};
+		params.res = res;
+		params.msg = msg;
+		params.filter = {name:1,email:1,phone:1};
+		dbQuery.getAllData(params);
 });
-
 
 router.post('/create',function createRoute(req,res){
 	console.log("client requested create");
