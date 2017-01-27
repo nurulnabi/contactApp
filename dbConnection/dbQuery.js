@@ -2,13 +2,24 @@
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-23 11:50:05
 * @Last Modified by:   noor
-* @Last Modified time: 2017-01-27 16:04:20
+* @Last Modified time: 2017-01-27 18:31:36
 */
 
 var MongoClient	 = 	require('mongodb').MongoClient, 
 	dbQuery 	 = 	{},
 	dbRefrence 	 =  require('./connectTo')
 	;
+
+
+dbQuery.createUser = function(params,cb,nextCb){
+	dbRefrence.db.collection('user').updateOne(params.filter,{$set:params.data},
+	{
+		upsert:true
+	},
+	function(err,result){
+		cb(err,result,nextCb);
+	});
+};
 
 dbQuery.login = function(params){
 	dbRefrence.db.collection('user').findOne(params.credentials,function(err,result){

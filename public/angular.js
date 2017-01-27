@@ -2,7 +2,7 @@
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-27 10:31:48
 * @Last Modified by:   noor
-* @Last Modified time: 2017-01-27 17:43:42
+* @Last Modified time: 2017-01-27 19:11:17
 */
 
 var myContacts = angular.module('contactApp', []);
@@ -18,7 +18,7 @@ myContacts.controller('contactDetails',function($scope,$http,$window){
 	$scope.contactees = [];
 	$scope.updateUser={};
 	$scope.loginData = {}
-	// $scope.contactToSave = {};
+	$scope.contactToSave = {};
 	// $scope.contactToUpdate = {};
 	// $scope.contactToDelete = {};
 
@@ -45,7 +45,24 @@ myContacts.controller('contactDetails',function($scope,$http,$window){
 	}
 
 	$scope.saveContact = function(){
-		// $http.post
+		if($scope.contactToSave.name && $scope.contactToSave.email && $scope.contactToSave.phone){
+			$http({
+				method:"POST",
+				url:"/createUser",
+				data:$scope.contactToSave,
+				headers: {'Content-Type': 'application/json'}
+			})
+			.then(function(response){
+				if(response.data.status == true){
+					$scope.fetchData();
+				}else{
+					$scope.saveResponse = response.data;
+				}
+			})
+			.catch(function(reject){
+				$scope.saveResponse = reject.data;
+			})
+		}
 	}
 
 	$scope.loginStatus = function(){

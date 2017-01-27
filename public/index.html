@@ -100,16 +100,25 @@
     		</div>
     	</div>
       <div>
+      <!-- **********************************Login or Sign UP************************************* -->
       <div id="login" class="modal" >
         <div class="modal-content">
           <h4>{{loginResponse+loginError+msgSuccess}}</h4>
+          <p>
+              <input name="group1" type="radio" id="test1" checked="checked" ng-value="login"/>
+              <label for="test1">Login</label>
+              <input name="group1" type="radio" id="test2" ng-value="signup" />
+              <label for="test2">Sign Up</label>
+          </p>
           <div class="input-field col s12">
             <i class="material-icons prefix">email</i>
             <input id="email" type="email" class="validate" id="email" ng-model="loginData.email">
+            <label for="icon_prefix" class="active">Email</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix">vpn_key</i>
             <input id="password" type="password" class="validate" id="password" ng-model="loginData.password">
+            <label for="icon_prefix" class="active">Password</label>
           </div>
         </div>
         <div class="modal-footer">

@@ -2,11 +2,12 @@
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-20 15:24:07
 * @Last Modified by:   noor
-* @Last Modified time: 2017-01-24 11:36:54
+* @Last Modified time: 2017-01-27 18:28:11
 */
 
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-var mobileformat = /^\+?([1])\)?([ ]{1})?([(])?([0-9]{3})?([)])?([ ]{1})?([0-9]{3})?([- ]{1})?([0-9]{4})$/;
+// var mobileformat = /^\+?([1])\)?([ ]{1})?([(])?([0-9]{3})?([)])?([ ]{1})?([0-9]{3})?([- ]{1})?([0-9]{4})$/;
+var mobileformat = /^\+?([0-9]{10})$/;
 var nameformat = /^\+?(([a-zA-Z]{4,10}[ ]{0,1}){1,4})$/;
 
 exports.name = function(params,callback) {
@@ -37,6 +38,7 @@ exports.all = function(params,callback) {
 	if(mailformat.test(params.email) && mobileformat.test(params.phone) && nameformat.test(params.name)){
 		callback(null,params,params.cb);
 	}else{
+		console.log(mailformat.test(params.email),mobileformat.test(params.phone),nameformat.test(params.name))
 		callback({status:false,info:params.msg.invalidData},params);
 	}
 }
