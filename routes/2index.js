@@ -49,9 +49,9 @@ router.post('/create',function createRoute(req,res){
 		,function(err,result){
 			var check = result.result;
 			if(err){
-					res.send(msg.createFail+err);
+					res.send({status:false, info:msg.createFail});
 			}else if(check.ok==1 && check.nModified ==0 && check.upserted == null){
-				res.send(msg.createExist);
+				res.send({status:false, info: msg.createExist});
 			}else if(check.ok==1 && check.nModified ==0 && check.upserted != null){
 				res.send(msg.createSuccess);
 			}

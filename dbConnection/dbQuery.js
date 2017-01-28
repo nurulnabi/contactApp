@@ -1,8 +1,8 @@
 /*
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-23 11:50:05
-* @Last Modified by:   noor
-* @Last Modified time: 2017-01-27 18:31:36
+* @Last Modified by:   nurulnabi
+* @Last Modified time: 2017-01-28 19:04:01
 */
 
 var MongoClient	 = 	require('mongodb').MongoClient, 
@@ -26,6 +26,7 @@ dbQuery.login = function(params){
 		if(!result){
 			params.res.send({status:false});
 		}else{
+			console.log(result);
 			params.res.send(result);
 		}
 	});
@@ -60,9 +61,9 @@ dbQuery.deleteContact = function(params,cb,nextCb){
 };
 
 dbQuery.getAllData = function(params){
-	dbRefrence.db.collection('contacts').find({},params.filter,function(err,result){
+	dbRefrence.db.collection('contacts').find(params.filter,function(err,result){
 		if(err){
-			params.res.send(params.msg.getAllDataFailed);
+			params.res.send({status:false, info:params.msg.getAllDataFailed});
 		}else{
 			result.toArray(function(err,docs){
 				params.res.send(docs);

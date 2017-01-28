@@ -55,7 +55,7 @@ router.post('/createUser',function(req,res){
 			],
 			function(err,result){
 				if(err){
-					res.json(err);
+					res.send(err);
 				}
 			});
 });
@@ -78,7 +78,7 @@ router.post('/getAllData',function getAllData(req,res){
 	var params = {};
 		params.res = res;
 		params.msg = msg;
-		params.filter = {name:1,email:1,phone:1};
+		params.filter = {'userID':req.body.userID};
 		dbQuery.getAllData(params);
 });
 
@@ -88,7 +88,7 @@ router.post('/create',function createRoute(req,res){
 		params.res 		= res;
 		params.filter 	= { name:params.name,	email:params.email,		phone:params.phone };
 		params.msg 		= msg;
-		params.data 	= params.filter;
+		params.data 	= { name:params.name,	email:params.email,		phone:params.phone, userID:params.userID};
 		params.cb 		= function(err,result,nextCb){
 			var check = result.result;
 			if(err){
@@ -105,7 +105,7 @@ router.post('/create',function createRoute(req,res){
 		],
 		function(err,result){
 			if(err){
-				res.json(err);
+				res.send(err);
 			}
 		});
 });
@@ -122,7 +122,7 @@ router.post('/search',function searchRoute(req,res){
 				nextCb({status:false, info:msg.searchFail});
 			}else{
 				var result = "Name: "+doc.name+"<br>email: "+doc.email+"<br>mobile: "+doc.phone;
-				res.end(result);
+				res.send({status:true,info:result});
 				nextCb(null,doc);
 			}
 		};
@@ -133,7 +133,7 @@ router.post('/search',function searchRoute(req,res){
 			],
 			function(err,result){
 				if(err){
-					res.json(err);
+					res.send(err);
 				}
 			});
 });
@@ -148,7 +148,6 @@ router.post('/update',function updateRoute(req,res){
 			params.data 	= { name:params.name,	email:params.email,		phone:params.phone };
 			params.cb 		= function(err,result,nextCb){
 				if(err){
-					res.write("noor");
 					nextCb({status:false, info:msg.updateFail},result);
 				}else{
 					analyseResult.ofUdateContact(result,res);

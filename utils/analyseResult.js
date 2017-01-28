@@ -1,8 +1,8 @@
 /*
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-23 13:21:27
-* @Last Modified by:   noor
-* @Last Modified time: 2017-01-27 19:09:48
+* @Last Modified by:   nurulnabi
+* @Last Modified time: 2017-01-28 18:13:19
 */
 
 var msg 	= 	require('../config/messages')
@@ -15,36 +15,36 @@ analyseResult.ofCreateUser = function(result,res){
 	var check = result.result;
 	var check = result.result;
 	if(check.ok==1 && check.nModified ==0 && check.upserted == null){
-		res.send(msg.createExist);
+		res.send({status:false, info:msg.createExist});
 	}else if(check.ok==1 && check.nModified ==0 && check.upserted != null){
-		res.send({status:true,id:check.upserted[0]._id});
+		res.send({status:true,info:"User created successfully "});
 	}
 }
 analyseResult.ofUdateContact = function(result,res){
 	var check = result.result;
 	if(check.nModified == 0 && check.n == 1){
-		res.send(msg.updateDuplicate);
+		res.send({status:false,  info:msg.updateDuplicate});
 	}else if(check.nModified == 0 && check.n == 0){
-		res.send(msg.updateFail);
+		res.send({status:false, info:msg.updateFail});
 	}else {
-		res.send(msg.updateSuccess);
+		res.send({status:true, info:msg.updateSuccess});
 	}
 };
 
 analyseResult.ofDeleteContact = function(result,res){
 	if(result.result.n == 0){
-		res.send(msg.deleteFail);
+		res.send({status:false,  info:msg.deleteFail});
 	}else {
-		res.send(msg.deleteSuccess);
+		res.send({status:true, info:msg.deleteSuccess});
 	}
 };
 
 analyseResult.ofCreateContact = function(result,res){
 	var check = result.result;
 	if(check.ok==1 && check.nModified ==0 && check.upserted == null){
-		res.send(msg.createExist);
+		res.send({status:false, info:msg.createExist});
 	}else if(check.ok==1 && check.nModified ==0 && check.upserted != null){
-		res.send(msg.createSuccess);
+		res.send({status:true, info:msg.createSuccess});
 	}
 };
 
